@@ -1,7 +1,7 @@
 class Background{
   constructor(scene, x, y, width, height, sprite, minSpd, maxSpd, acceleration){
     this.bg = scene.add.tileSprite(x, y, width, height, sprite)
-    this.bgSpeed = minSpd
+    this.speed = minSpd
     this.minSpd = minSpd
     this.maxSpd = maxSpd
     this.acceleration = acceleration
@@ -11,19 +11,19 @@ class Background{
 
     if(cursors.up.isDown){
       // "Accelerate"
-      this.bgSpeed += -this.acceleration;
-      this.bgSpeed = Math.max(this.bgSpeed, -this.maxSpd);
+      this.speed  += -this.acceleration;
+      this.speed  = Math.max(this.speed , -this.maxSpd);
     }
     else if(cursors.down.isDown){
       // "Decelerate"
-      this.bgSpeed += this.acceleration * 2;
-      this.bgSpeed = Math.min(this.bgSpeed, -this.minSpd);
+      this.speed  += this.acceleration * 2;
+      this.speed  = Math.min(this.speed , -this.minSpd);
     }
     else{
-      this.bgSpeed += this.acceleration;
-      this.bgSpeed = Math.min(this.bgSpeed, -this.minSpd);
+      this.speed  += this.acceleration;
+      this.speed  = Math.min(this.speed , -this.minSpd);
     }
-    this.bg.tilePositionY += this.bgSpeed;
+    this.bg.tilePositionY += this.speed ;
   }
 
 };

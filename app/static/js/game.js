@@ -20,3 +20,12 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+
+var spawnpoints = [
+  [{x: 300, y: 0}],
+  [{x: 180, y: 0}],
+  [{x: 420, y: 0}],
+  [{x: 300, y: 0}, {x: 180, y: 0}],
+  [{x: 180, y: 0}, {x: 420, y: 0}],
+  [{x: 430, y: 0}, {x: 300, y: 0}]
+]

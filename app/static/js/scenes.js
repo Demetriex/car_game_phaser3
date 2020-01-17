@@ -1,20 +1,12 @@
 var player;
 var background;
-
-spawnpoints = [
-  [{x: 320, y: 0}],
-  [{x: 190, y: 0}],
-  [{x: 450, y: 0}],
-  [{x: 320, y: 0}, {x: 190, y: 0}],
-  [{x: 190, y: 0}, {x: 450, y: 0}],
-  [{x: 450, y: 0}, {x: 320, y: 0}]
-]
+var gameOver = false;
 
 function preload (){
-  this.physics.world.setBounds(128, 0, 384)
+  this.physics.world.setBounds(128, 0, 344)
   this.load.image('Car', 'static/assets/car.png');
   this.load.image('Car2', 'static/assets/car2.png');
-  this.load.image('Road', 'static/assets/oceanroad.png');
+  this.load.image('Road', 'static/assets/road.png');
 };
 
 function create (){
@@ -42,11 +34,20 @@ function create (){
     10,
     0.5
   )
+
+  this.physics.add.collider(player.object, spawner.spawnlist, hitCar, null, this);
 };
 
 function update(){
+  if (gameOver){
+    return;
+  }
   cursors = this.input.keyboard.createCursorKeys();
   player.update(cursors);
   spawner.update(cursors);
   background.update(cursors);
+}
+
+function hitCar(){
+  // gameOver = true;
 }

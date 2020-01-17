@@ -1,7 +1,7 @@
 class Spawner{
   constructor(scene, config, choices, sprite, minSpd, maxSpd, acceleration){
     this.scene = scene;
-    this.spawnlist = scene.add.group(config);
+    this.spawnlist = scene.physics.add.group(config);
     this.config = config;
     this.choices = choices;
     this.sprite = sprite;
@@ -16,7 +16,6 @@ class Spawner{
       var choice = randomChoice(this.choices);
       this.spawnObjects(choice, this.scene, this.sprite, this.spawnlist);
     }
-    // console.log(this.spawnlist.getLength());
 
     if(cursors.up.isDown){
       this.speed += this.acceleration;
