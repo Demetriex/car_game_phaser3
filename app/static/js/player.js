@@ -7,7 +7,13 @@ class Player{
 
   update(cursors){
     this.object.setVelocity(0);
-
+    this.object.setVelocityY(-100);
+    if (cursors.up.isDown){
+        this.object.setVelocityY(-this.speed);
+    }
+    else if(cursors.down.isDown){
+        this.object.setVelocityY(this.speed);
+    }
     if (cursors.left.isDown){
         this.object.setVelocityX(-this.speed);
     }

@@ -57,7 +57,7 @@ class Spawner{
   updateObjectLocation(object, speed){
     object.forEach(
       function(value, index, array){
-        value.y += speed
+        value.setVelocityY(speed);
       }
     );
   }

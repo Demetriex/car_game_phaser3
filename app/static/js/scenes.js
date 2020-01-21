@@ -3,7 +3,7 @@ var background;
 var gameOver = false;
 
 function preload (){
-  this.physics.world.setBounds(128, 0, 344)
+  this.physics.world.setBounds(128, 600, 344, 200)
   this.load.image('Car', 'static/assets/car.png');
   this.load.image('Car2', 'static/assets/car2.png');
   this.load.image('Road', 'static/assets/road.png');
@@ -30,9 +30,9 @@ function create (){
     config,
     spawnpoints,
     'Car2',
-    3,
-    10,
-    0.5
+    100,
+    400,
+    30
   )
 
   this.physics.add.collider(player.object, spawner.spawnlist, hitCar, null, this);
@@ -49,5 +49,5 @@ function update(){
 }
 
 function hitCar(){
-  // gameOver = true;
+  // maybe reduce hp or something
 }
