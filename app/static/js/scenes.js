@@ -14,7 +14,7 @@ function create (){
     this,
     config.width/2,
     config.height/2,
-    0, 0, 'Road', 2, 10, 0.2
+    0, 0, 'Road', 2, 15, 0.1
   );
 
   player = new Player(
@@ -31,11 +31,14 @@ function create (){
     spawnpoints,
     'Car2',
     100,
-    400,
-    30
+    700,
+    10
   )
 
+  scorer = new ScoringSystem(this);
+
   this.physics.add.collider(player.object, spawner.spawnlist, hitCar, null, this);
+
 };
 
 function update(){
@@ -43,6 +46,7 @@ function update(){
     return;
   }
   cursors = this.input.keyboard.createCursorKeys();
+  scorer.update(cursors);
   player.update(cursors);
   spawner.update(cursors);
   background.update(cursors);

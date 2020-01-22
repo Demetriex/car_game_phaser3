@@ -9,9 +9,15 @@ class Spawner{
     this.maxSpd = maxSpd;
     this.acceleration = acceleration;
     this.speed = minSpd;
+    this.timer = scene.time.addEvent({loop: true});
+    this.time = 0.0;
+    this.start_time = 0.0;
+    this.progression = 30; //seconds
   }
 
   update(cursors){
+    this.addDifficulty();
+
     if (this.spawnlist.getLength() == 0){
       var choice = randomChoice(this.choices);
       this.spawnObjects(choice, this.scene, this.sprite, this.spawnlist);
@@ -26,13 +32,22 @@ class Spawner{
       this.speed = Math.max(this.speed, this.minSpd);
     }
     else{
-      this.speed += this.acceleration;
-      this.speed = Math.min(this.speed, this.minSpd);
+      this.speed += -this.acceleration;
+      this.speed = Math.max(this.speed, this.minSpd);
     }
 
     var objects = this.spawnlist.getChildren();
     this.updateObjectLocation(objects, this.speed);
     this.checkObjectLocation(objects, this.config);
+  }
+
+  addDifficulty(){
+    this.time = this.timer.getElapsedSeconds();
+    if (this.time - this.start_time >= this.progression){
+      this.minSpd = this.minSpd + this.minSpd * 0.2
+      this.maxSpd = this.maxSpd + this.maxSpd * 0.2
+      this.start_time = this.time
+    }
   }
 
   spawnObjects(choice, scene, sprite, spawnlist) {

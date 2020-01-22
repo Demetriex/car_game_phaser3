@@ -29,3 +29,11 @@ var spawnpoints = [
   [{x: 180, y: 0}, {x: 420, y: 0}],
   [{x: 430, y: 0}, {x: 300, y: 0}]
 ]
+
+var textFormat = {
+  fontFamily: '"Verdana"',
+  fontSize: '40px',
+  color: '#fff',
+  stroke: '#000',
+  strokeThickness: 5
+}
