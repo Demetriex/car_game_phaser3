@@ -7,12 +7,13 @@ class Spawner{
     this.sprite = sprite;
     this.minSpd = minSpd;
     this.maxSpd = maxSpd;
+    this.spdThreshold = this.maxSpd + this.maxSpd * 2/3
     this.acceleration = acceleration;
     this.speed = minSpd;
     this.timer = scene.time.addEvent({loop: true});
     this.time = 0.0;
     this.start_time = 0.0;
-    this.progression = 30; //seconds
+    this.progression = PROGRESSION_SECS;
   }
 
   update(cursors){
@@ -44,9 +45,12 @@ class Spawner{
   addDifficulty(){
     this.time = this.timer.getElapsedSeconds();
     if (this.time - this.start_time >= this.progression){
-      this.minSpd = this.minSpd + this.minSpd * 0.2
-      this.maxSpd = this.maxSpd + this.maxSpd * 0.2
-      this.start_time = this.time
+      var addSpd = this.maxSpd * 0.2
+      if (this.maxSpd + addSpd <= this.spdThreshold){
+        this.maxSpd = this.maxSpd + addSpd
+        this.minSpd = this.minSpd + addSpd * 1.5
+        this.start_time = this.time
+      }
     }
   }
 

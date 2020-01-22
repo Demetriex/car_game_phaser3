@@ -8,7 +8,7 @@ var config = {
     physics: {
       default: 'arcade',
       arcade: {
-        debug: true
+        debug: false
       }
    },
     scene: {
@@ -37,3 +37,5 @@ var textFormat = {
   stroke: '#000',
   strokeThickness: 5
 }
+
+var PROGRESSION_SECS = 15;
