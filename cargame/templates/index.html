@@ -2,15 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.21.0/phaser.min.js"></script>
     <title></title>
   </head>
   <body>
-    <script src="{{url_for('static', filename='js/scenes.js')}}"></script>
-    <script src="{{url_for('static', filename='js/background.js')}}"></script>
-    <script src="{{url_for('static', filename='js/player.js')}}"></script>
-    <script src="{{url_for('static', filename='js/spawner.js')}}"></script>
-    <script src="{{url_for('static', filename='js/score.js')}}"></script>
-    <script src="{{url_for('static', filename='js/game.js')}}"></script>
+    {% assets "js_all" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
   </body>
 </html>
